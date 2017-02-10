@@ -4,12 +4,9 @@ using namespace std;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
 
-// union_find data structure
-// vi p is a vector that holds where they point
-// find get index of a node and returns the SUPER node that controlls it
-// unite, puts index a and b together in a set, and all things in theyre sets join aswell
 
-// to check if to indexes are in the same set, find(a) == find(b), if true then same set
+// Open.Kattis.com
+// Unionfind
 
 struct union_find {
 	vi p;
