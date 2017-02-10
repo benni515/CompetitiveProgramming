@@ -20,7 +20,16 @@ struct union_find {
 };
 
 int main() {
-	union_find u(15); // created a union with the size of 15
+	int n,q;
+	cin >> n >> q;
+	union_find u(n); // created a union with the size of 15
+	char k;
+	int f,f2;
+	rep(i,0,q) {
+		cin >> k >> f >> f2;
+		if(k == '?') cout << (u.joined(f,f2) ? "yes" : "no") << endl;
+		else u.unite(f,f2);
+	}
 	return 0;
 }
 
