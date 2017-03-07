@@ -9,6 +9,8 @@ typedef long long ll;
 const int INF = ~(1<<31);
 const double pi = acos(-1);
 
+// This is the solution to the problem paintball on kattis
+
 struct BpGraph {
 	vvi adj;
 	vi owner;
