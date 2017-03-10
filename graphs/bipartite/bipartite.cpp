@@ -17,8 +17,7 @@ struct BpGraph {
 	BpGraph(int n, int m) {
 		adj = vvi(n);
 		done = vector<bool>(n);
-		owner = vi(m);
-		rep(i,0,m) owner[i] = -1;
+		owner = vi(m,-1);
 	}
 	void addEdge(int a, int b) {
 		adj[a].push_back(b);
@@ -36,7 +35,7 @@ struct BpGraph {
 		return 0;
 	}
 	int clear(int m) {
-		rep(i,0,m) owner[i] = -1;
+		owner.assign(m,-1);
 	}
 	vector<int> getconnections(int n, int m) {
 		vector<int> ans;
