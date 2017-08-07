@@ -10,17 +10,32 @@ typedef vector<int> vi;
 // unite, puts index a and b together in a set, and all things in theyre sets join aswell
 
 // to check if to indexes are in the same set, find(a) == find(b), if true then same set
+// 0 1 2 3 4 5 6 
+// 0 3 2 3 4 3 6
+//
 
 struct union_find {
 	vi p;
-	union_find(int n) : p(n) {rep(i,0,n) p[i] = i;}
-	int find(int x) { return p[x] == x ? x : p[x] = find(p[x]);}
-	void unite(int a, int b) {p[find(a)] = find(b);}
-	bool joined(int a, int b) {return find(a) == find(b);}
+	int cc;
+	vi edg[100010];
+	union_find(int n) : p(n) {
+		rep(i,0,n) p[i] = i; 
+		rep(i,0,n) edg[i].push_back(i);
+	}
+	int find(int a) { return p[a] == a ? a : p[a] = find(p[a]); }
+	bool joined(int a, int b) { return find(a) == find(b);}
+	void unite(int a, int b) {
+		if(joined(a,b)) return;
+		cc--;
+		vi ne = edg[find(a)];
+		rep(i,0,ne.size()) edg[find(b)].push_back(ne[i]);
+		p[find(a)] = find(b);
+	}
 };
 
 int main() {
-	union_find u(15); // created a union with the size of 15
 	return 0;
 }
+
+
 
