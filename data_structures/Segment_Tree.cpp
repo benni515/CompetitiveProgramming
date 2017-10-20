@@ -1,30 +1,11 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define rep(i,a,b) for(int i = (a); i < (b); i++)
-#define iter(it,c) for(__typeof((c).begin()) it = (c).begin(); it != (c).end();++it)
-typedef pair<int,int> ii;
-typedef vector<int> vi;
-typedef vector<ii> vii;
-typedef long long ll;
-const int INF = ~(1<<31);
-const double pi = acos(-1);
-
-// Open.kattis.com
-// SuperComputer
-
-// This data-structure is one of the more complicated ones
-// There are loads of features not included in this one
-
 struct node {
 	node* left = NULL;
 	node* right = NULL;
 	int sum, mx, mn, atr, atl;
 	node(node* l, node* r, int v, int al, int ar) {
-		left = l;
-		right = r;
+		left = l; right = r;
 		sum = v; mx = v; mn = v;
-		atl = al;
-		atr = ar;
+		atl = al; atr = ar;
 	}
 	void change(int at, int to) { // changes index of at into value of to
 		if(at > atr || at < atl) return;
@@ -48,7 +29,7 @@ struct node {
 	}
 	void update() { // Changes everything when done
 		sum = left->sum+right->sum;
-		mx = min(left->mn, right->mn);
+		mn = min(left->mn, right->mn);
 		mx = max(left->mx, right->mx);
 	}
 	int qsum(int l, int r) { // gets the some from range l to r
@@ -67,10 +48,6 @@ struct node {
 		return max(left->qmx(l,r), right->qmx(l,r));
 	}
 };
-
-// There are many ways to build a segment tree, this builds a segment tree
-// of length r with 0 at all nodes, you can use a vector, or just your own integer value
-// also it does not update sums, max and min value for parents of nodes
 node* build(int l, int r) {
 	if(l > r) return NULL;
 	if(l == r) return new node(NULL,NULL,0,l,r);
@@ -80,31 +57,3 @@ node* build(int l, int r) {
 	node* cur = new node(left,right,0,l,r);
 	return cur;
 }
-
-int main() {
-	int n,q;
-	cin >> n >> q;
-	node* root = build(0,n-1);
-	int f,f2;
-	char k;
-	rep(i,0,q) {
-		cin >> k;
-		if(k == 'F') {
-			cin >> f;
-			f--;
-			root->change(f, 1-root->qsum(f,f));
-		} else {
-			cin >> f >> f2;
-			f--;f2--;
-			cout << root->qsum(f,f2) << endl;
-		}
-	}
-	return 0;
-}
-
-
-
-
-
-
-

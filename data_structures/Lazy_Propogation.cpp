@@ -1,14 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define rep(i,a,b) for(int i = (a); i < (b); i++)
-#define iter(it,c) for(__typeof((c).begin()) it = (c).begin(); it != (c).end();++it)
-typedef pair<int,int> ii;
-typedef vector<int> vi;
-typedef vector<ii> vii;
-typedef long long ll;
-const int INF = ~(1<<31);
-const double pi = acos(-1);
-
 struct node {
 	node* left = NULL;
 	node* right = NULL;
@@ -16,21 +5,15 @@ struct node {
 	int lazy = 0;
 	int mn,mx;
 	node(node* l, node* r, int v, int al, int ar) {
-		left = l;
-		right = r;
-		val = v;
-		atl = al;
-		atr = ar;
-		mn = v;
-		mx = v;
+		left = l; right = r; val = v;
+		atl = al; atr = ar; mn = v; mx = v;
 	}
 	void lazyupdate(int l, int r, int by) {
 		if(l > atr || r < atl) return;
 		if(lazy != 0) propagate();
 		if(l <= atl && atr <= r) {
 			val += (atr-atl+1)*by;
-			mx += by;
-			mn += by;
+			mx += by; mn += by;
 			if(left != NULL) {
 				left->lazy += by;
 				right->lazy += by;
@@ -72,32 +55,12 @@ struct node {
 		lazy = 0;
 	}
 };
-
-node* build(int l, int r, vi &arr) {
+node* build(int l, int r) {
 	if(l > r) return NULL;
-	if(l == r) return new node(NULL, NULL, arr[l], l, r);
+	if(l == r) return new node(NULL, NULL, 0, l, r);
 	int m = (l+r)/2;
 	node* left = build(l,m,arr);
 	node* right = build(m+1,r,arr);
-	node* cur = new node(left,right,left->val+right->val,l,r);
+	node* cur = new node(left,right,0,l,r);
 	return cur;
 }
-
-int main() {
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
