@@ -1,7 +1,7 @@
+vi edg[10005];
 int bfs(int s, int e) {
 	bool vis[10005];
 	int dist[10005];
-	vi edg[10005];
 	memset(vis,false,sizeof(vis));
 	rep(i,0,10005) dist[i] = INF;
 	queue<int> q;

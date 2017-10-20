@@ -1,10 +1,9 @@
+vii edg[10005];
 int djikstra(int s, int e) {
 	bool vis[10005];
 	int dist[10005]; 
-	vii edg[10005];
 	memset(vis,false,sizeof(vis));
 	rep(i,0,10005) dist[i] = INF;
-	rep(i,0,10005) edg[i].clear();
 	priority_queue<ii,vii,greater<ii>> pq;
 	pq.push(ii(0,s));
 	dist[s] = 0;
