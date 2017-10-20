@@ -1,14 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define rep(i,a,b) for(int i = (a); i < (b); i++)
-#define iter(it,c) for(__typeof((c).begin()) it = (c).begin(); it != (c).end();++it)
-typedef pair<int,int> ii;
-typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
-typedef long long ll;
-const int INF = ~(1<<31);
-const double pi = acos(-1);
-
 struct BpGraph {
 	vvi adj;
 	vi owner;
@@ -37,8 +26,8 @@ struct BpGraph {
 	int clear(int m) {
 		owner.assign(m,-1);
 	}
-	vector<int> getconnections(int n, int m) {
-		vector<int> ans;
+	vi getconnections(int n, int m) {
+		vi ans;
 		rep(i,0,n) ans.push_back(owner[i]);
 		return ans;
 	}
@@ -51,7 +40,3 @@ struct BpGraph {
 		return res;
 	}
 };
-
-int main() {
-
-}
