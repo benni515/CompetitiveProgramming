@@ -42,7 +42,7 @@ struct node {
 	}
 	void update() { // Changes everything when done
 		sum = left->sum+right->sum;
-		mx = min(left->mn, right->mn);
+		mn = min(left->mn, right->mn);
 		mx = max(left->mx, right->mx);
 	}
 	int qsum(int l, int r) { // gets the some from range l to r
