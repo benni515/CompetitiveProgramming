@@ -2,15 +2,12 @@ struct BpGraph {
 	vvi adj;
 	vi owner;
 	vector<bool> done;
-	
 	BpGraph(int n, int m) {
 		adj = vvi(n);
 		done = vector<bool>(n);
 		owner = vi(m,-1);
 	}
-	void addEdge(int a, int b) {
-		adj[a].push_back(b);
-	}
+	void addEdge(int a, int b) { adj[a].push_back(b); }
 	int alternating_path(int left) {
 		if(done[left]) return 0;
 		done[left] = true;
@@ -23,9 +20,7 @@ struct BpGraph {
 		}
 		return 0;
 	}
-	int clear(int m) {
-		owner.assign(m,-1);
-	}
+	int clear(int m) { owner.assign(m,-1); }
 	vi getconnections(int n, int m) {
 		vi ans;
 		rep(i,0,n) ans.push_back(owner[i]);
