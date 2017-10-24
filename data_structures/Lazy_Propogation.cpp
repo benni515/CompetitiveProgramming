@@ -9,8 +9,8 @@ struct node {
 		atl = al; atr = ar; mn = v; mx = v;
 	}
 	void lazyupdate(int l, int r, int by) {
-		if(l > atr || r < atl) return;
 		if(lazy != 0) propagate();
+		if(l > atr || r < atl) return;
 		if(l <= atl && atr <= r) {
 			val += (atr-atl+1)*by;
 			mx += by; mn += by;
