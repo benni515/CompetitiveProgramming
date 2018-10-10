@@ -12,4 +12,5 @@ int mst(vector<pair<int,ii>> &edg, int size) {
 			ds.unite(x, y);
 		}
 	}
+	return cost;
 }
