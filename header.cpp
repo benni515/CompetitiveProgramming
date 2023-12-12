@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define rep(i,a,b) for(auto i = (a); i < (b); i++)
 #define pb push_back
 #define fs first
 #define sc second

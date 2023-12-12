@@ -1,26 +1,22 @@
-vii edg[10005];
-int djikstra(int s, int e) {
-	bool vis[10005];
-	int dist[10005]; 
-	memset(vis,false,sizeof(vis));
-	rep(i,0,10005) dist[i] = INF;
-	priority_queue<ii,vii,greater<ii>> pq;
-	pq.push(ii(0,s));
+#include "Graph.cpp"
+vector<int> djikstra(Graph &G, int source) {
+    vector<bool> vis(G.n, false);
+    vector<int> dist(G.n, INT_MAX);
+	priority_queue<ii, vii, greater<ii>> pq;
+	pq.push(ii(0,source));
 	dist[s] = 0;
 	while(!pq.empty()) {
 		ii cur = pq.top();
 		pq.pop();
 		if(vis[cur.sc]) continue;
 		vis[cur.sc] = true;
-		rep(i,0,edg[cur.sc].size()) {
-			ii nx = edg[cur.sc][i];
-			if(!vis[nx.sc]) {
-				dist[nx.sc] = min(dist[nx.sc], dist[cur.sc]+nx.fs);
-				pq.push(ii(dist[nx.sc], nx.sc));
+        for(auto edge : G.edges[cur.sc]) {
+			if(!vis[edge.v] && dist[cur.sc] + edge.w < dist[edge.v]) {
+                dist[edge.v] = dist[cur.sc] + edge.w;
+				pq.push(ii(dist[edge.v], edge.v));
 			}
 		}
 	}
-	if(dist[e] == INF) cout << "Impossible" << endl; // no path
-	else cout << dist[e] << endl; // Its the lengthh
+    return dist;
 }
 
